@@ -11,8 +11,8 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="62"
-  DTS:VersionGUID="{781D3D70-CC28-43F5-AC42-B2288C58D492}">
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{93858CBA-F83F-4D0D-A101-4D379EF05B03}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -7145,7 +7145,7 @@ FROM
                 <property
                   dataType="System.String"
                   description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[dbo].[FaitsCollecte]</property>
                 <property
                   dataType="System.String"
                   description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
@@ -7171,15 +7171,15 @@ FROM
                 <property
                   dataType="System.Boolean"
                   description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
-                  name="FastLoadKeepIdentity">false</property>
+                  name="FastLoadKeepIdentity">true</property>
                 <property
                   dataType="System.Boolean"
                   description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
-                  name="FastLoadKeepNulls">false</property>
+                  name="FastLoadKeepNulls">true</property>
                 <property
                   dataType="System.String"
                   description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
@@ -7188,6 +7188,8 @@ FROM
               <connections>
                 <connection
                   refId="Package\Faits\FaitsCollecte.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.POJECTBI 4]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.POJECTBI 4]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -7198,8 +7200,67 @@ FROM
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].Columns[collecteur]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="collecteur"
+                      externalMetadataColumnId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[collecteur]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[collecteur]" />
+                    <inputColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].Columns[datecreation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="datecreation"
+                      externalMetadataColumnId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[datecreation]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[datecreation]" />
+                    <inputColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].Columns[identifiant]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="identifiant"
+                      externalMetadataColumnId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[identifiant]"
+                      lineageId="Package\Faits\17:invalid" />
+                    <inputColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].Columns[id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="101"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[id]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[id]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[collecteur]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="collecteur" />
+                    <externalMetadataColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[datecreation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="datecreation" />
+                    <externalMetadataColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[identifiant]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="identifiant" />
+                    <externalMetadataColumn
+                      refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      name="id" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
@@ -7252,13 +7313,10 @@ FROM
                   dataType="System.String"
                   description="Commande SQL à exécuter."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
-lieu,
-datecreation,
-poubelle,
-collecteur 
-FROM
-[Destination OLE DB]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT lat + '-' + lon AS id, datecreation, collecteur, commune, COUNT(identifiant) AS Expr1, COUNT(collecteur) AS Expr2
+FROM     [Destination OLE DB]
+WHERE  (statut LIKE 'Sensible')
+GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
                 <property
                   dataType="System.String"
                   description="Variable contenant la commande SQL à exécuter."
@@ -7306,17 +7364,6 @@ FROM
                       name="collecteur"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[commune]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[commune]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[commune]"
-                      name="commune"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[datecreation]"
                       codePage="1252"
                       dataType="str"
@@ -7328,97 +7375,48 @@ FROM
                       name="datecreation"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[identifiant]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[identifiant]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[identifiant]"
-                      name="identifiant"
+                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[id]"
+                      length="101"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[id]"
+                      name="id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[lat]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[commune]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[lat]"
+                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[commune]"
                       length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[lat]"
-                      name="lat"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[commune]"
+                      name="commune"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[lon]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr1]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[lon]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[lon]"
-                      name="lon"
+                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr1]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr1]"
+                      name="Expr1"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[numerodansvoie]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr2]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[numerodansvoie]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[numerodansvoie]"
-                      name="numerodansvoie"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[statut]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[statut]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[statut]"
-                      name="statut"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[support]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[support]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[support]"
-                      name="support"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[voie]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[voie]"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[voie]"
-                      name="voie"
+                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr2]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr2]"
+                      name="Expr2"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[code_insee]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="code_insee" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[codefuv]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="codefuv" />
                     <externalMetadataColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[collecteur]"
                       codePage="1252"
@@ -7426,11 +7424,17 @@ FROM
                       length="50"
                       name="collecteur" />
                     <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[commentaire]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[datecreation]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      name="commentaire" />
+                      name="datecreation" />
+                    <externalMetadataColumn
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      name="id" />
                     <externalMetadataColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[commune]"
                       codePage="1252"
@@ -7438,95 +7442,13 @@ FROM
                       length="50"
                       name="commune" />
                     <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[datecreation]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="datecreation" />
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr1]"
+                      dataType="i4"
+                      name="Expr1" />
                     <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[datemodifalpha]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="datemodifalpha" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[datemodifgeo]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="datemodifgeo" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[gestionnaire]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="gestionnaire" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[gid]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="gid" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[identifiant]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="identifiant" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[implantation]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="implantation" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[lat]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="lat" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[lon]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="lon" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[numerodansvoie]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="numerodansvoie" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[observationlocalisante]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="observationlocalisante" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[referencemobilier]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="referencemobilier" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[statut]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="statut" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[support]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="support" />
-                    <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[voie]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="voie" />
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr2]"
+                      dataType="i4"
+                      name="Expr2" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -7535,19 +7457,19 @@ FROM
                   name="Sortie d'erreur de source OLE DB">
                   <outputColumns>
                     <outputColumn
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[id]"
+                      name="id" />
+                    <outputColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[collecteur]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[collecteur]"
                       name="collecteur" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[commune]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[commune]"
-                      name="commune" />
                     <outputColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[datecreation]"
                       codePage="1252"
@@ -7556,54 +7478,22 @@ FROM
                       lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[datecreation]"
                       name="datecreation" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[identifiant]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[commune]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[identifiant]"
-                      name="identifiant" />
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[commune]"
+                      name="commune" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[lat]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[lat]"
-                      name="lat" />
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr1]"
+                      dataType="i4"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr1]"
+                      name="Expr1" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[lon]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[lon]"
-                      name="lon" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[numerodansvoie]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[numerodansvoie]"
-                      name="numerodansvoie" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[statut]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[statut]"
-                      name="statut" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[support]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[support]"
-                      name="support" />
-                    <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[voie]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[voie]"
-                      name="voie" />
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr2]"
+                      dataType="i4"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr2]"
+                      name="Expr2" />
                     <outputColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
                       dataType="i4"
@@ -7622,6 +7512,13 @@ FROM
               </outputs>
             </component>
           </components>
+          <paths>
+            <path
+              refId="Package\Faits.Paths[Sortie de source OLE DB]"
+              endId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB]" />
+          </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -8242,7 +8139,7 @@ FROM
     design-time-name="Package\Faits">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="152,41.6"
           Id="Package\Faits\TempoCorbeille"
@@ -8250,12 +8147,49 @@ FROM
         <NodeLayout
           Size="138.4,41.6"
           Id="Package\Faits\FaitsCollecte"
-          TopLeft="412,253" />
+          TopLeft="396,254" />
+        <EdgeLayout
+          Id="Package\Faits.Paths[Sortie de source OLE DB]"
+          TopLeft="467.6,104.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,149.4"
+              Start="0,0"
+              End="0,141.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,141.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,62.95,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Faits\TempoCorbeille">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Faits\FaitsCollecte">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
