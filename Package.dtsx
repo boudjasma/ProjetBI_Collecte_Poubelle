@@ -11,8 +11,8 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="67"
-  DTS:VersionGUID="{93858CBA-F83F-4D0D-A101-4D379EF05B03}">
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{A2794C1E-F8F3-4C77-92FB-95D63C8EA323}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -7167,11 +7167,11 @@ FROM
                   dataType="System.Int32"
                   description="Spécifie le mode utilisé pour accéder à la base de données."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
-                  name="FastLoadKeepIdentity">true</property>
+                  name="FastLoadKeepIdentity">false</property>
                 <property
                   dataType="System.Boolean"
                   description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
@@ -7179,7 +7179,7 @@ FROM
                 <property
                   dataType="System.String"
                   description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
@@ -7224,7 +7224,7 @@ FROM
                       cachedLength="50"
                       cachedName="identifiant"
                       externalMetadataColumnId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].ExternalColumns[identifiant]"
-                      lineageId="Package\Faits\17:invalid" />
+                      lineageId="Package\Faits\774:invalid" />
                     <inputColumn
                       refId="Package\Faits\FaitsCollecte.Inputs[Entrée de destination OLE DB].Columns[id]"
                       cachedCodepage="1252"
@@ -7313,7 +7313,7 @@ FROM
                   dataType="System.String"
                   description="Commande SQL à exécuter."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT lat + '-' + lon AS id, datecreation, collecteur, commune, COUNT(identifiant) AS Expr1, COUNT(collecteur) AS Expr2
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT lat + '-' + lon AS id, datecreation, collecteur, commune, COUNT(identifiant) AS Quantite_poubelle_sensible_par_commune, COUNT(collecteur) AS Nombre_collecteur_de_poubelles_sensibles_par_commune
 FROM     [Destination OLE DB]
 WHERE  (statut LIKE 'Sensible')
 GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
@@ -7397,22 +7397,22 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
                       name="commune"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr1]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Quantite_poubelle_sensible_par_commune]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr1]"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr1]"
-                      name="Expr1"
+                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Quantite_poubelle_sensible_par_commune]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Quantite_poubelle_sensible_par_commune]"
+                      name="Quantite_poubelle_sensible_par_commune"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr2]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Nombre_collecteur_de_poubelles_sensibles_par_commune]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr2]"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Expr2]"
-                      name="Expr2"
+                      externalMetadataColumnId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Nombre_collecteur_de_poubelles_sensibles_par_commune]"
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].Columns[Nombre_collecteur_de_poubelles_sensibles_par_commune]"
+                      name="Nombre_collecteur_de_poubelles_sensibles_par_commune"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -7442,13 +7442,13 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
                       length="50"
                       name="commune" />
                     <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr1]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Quantite_poubelle_sensible_par_commune]"
                       dataType="i4"
-                      name="Expr1" />
+                      name="Quantite_poubelle_sensible_par_commune" />
                     <externalMetadataColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Expr2]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie de source OLE DB].ExternalColumns[Nombre_collecteur_de_poubelles_sensibles_par_commune]"
                       dataType="i4"
-                      name="Expr2" />
+                      name="Nombre_collecteur_de_poubelles_sensibles_par_commune" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -7485,15 +7485,15 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
                       lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[commune]"
                       name="commune" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr1]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Quantite_poubelle_sensible_par_commune]"
                       dataType="i4"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr1]"
-                      name="Expr1" />
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Quantite_poubelle_sensible_par_commune]"
+                      name="Quantite_poubelle_sensible_par_commune" />
                     <outputColumn
-                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr2]"
+                      refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Nombre_collecteur_de_poubelles_sensibles_par_commune]"
                       dataType="i4"
-                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Expr2]"
-                      name="Expr2" />
+                      lineageId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[Nombre_collecteur_de_poubelles_sensibles_par_commune]"
+                      name="Nombre_collecteur_de_poubelles_sensibles_par_commune" />
                     <outputColumn
                       refId="Package\Faits\TempoCorbeille.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
                       dataType="i4"
@@ -8058,7 +8058,7 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Dimensions\DimensionDate">
+    design-time-name="Package\Dimensions\Source OLE gincorbeille 1">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -8072,6 +8072,32 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Dimensions\Source OLE gincorbeille">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensions\DimensionDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensions\DimensionLieu">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -8098,32 +8124,6 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Dimensions\DimensionPoubelle">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dimensions\Source OLE gincorbeille 1">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dimensions\DimensionLieu">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -8176,7 +8176,7 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Faits\TempoCorbeille">
+    design-time-name="Package\Faits\FaitsCollecte">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -8189,7 +8189,7 @@ GROUP BY lat + '-' + lon, datecreation, collecteur, commune</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Faits\FaitsCollecte">
+    design-time-name="Package\Faits\TempoCorbeille">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
